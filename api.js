@@ -5,6 +5,9 @@ const searchText = () => {
     const inputValue = inputText.value
     inputText.value = '';
 
+
+
+    document.getElementById('parent').textContent = ''
     document.getElementById('parent-two').textContent = ''
     document.getElementById('parent-two').style.display = 'none'
 
@@ -36,11 +39,9 @@ const displaySearch = searchResult => {
 
         mainError.replaceChildren(errosMessage)
 
-
-        // document.getElementById('error').style.display = 'block'
     }
 
-    else {
+    else if (searchResult == searchResult) {
         const parrentDiv = document.getElementById('parent');
 
 
