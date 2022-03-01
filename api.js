@@ -124,13 +124,3 @@ const showDetailInfo = detailInfo => {
 
 
 
-// const numbers = [12, 22, 12, 45, 9, 10, 11, 34, 78, 99, 43];
-
-// for (let number = 0; number < 7; number++) {
-//     let element = numbers[number];
-//     console.log(element)
-// }
-
-
-
-// console.log(number.length)
