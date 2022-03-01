@@ -1,48 +1,78 @@
 
 const searchText = () => {
     const inputText = document.getElementById('input-field');
+
     const inputValue = inputText.value
     inputText.value = '';
+
     document.getElementById('parent-two').textContent = ''
     document.getElementById('parent-two').style.display = 'none'
 
     const url = ` https://openapi.programming-hero.com/api/phones?search=${inputValue}`
+
+
     fetch(url)
         .then(res => res.json())
         .then(data => displaySearch(data.data.slice(0, 20)))
 
+
+
+
 }
 
 
-searchText()
+
 
 const displaySearch = searchResult => {
     console.log(searchResult);
+    // debugger;
 
-    const parrentDiv = document.getElementById('parent');
-    parrentDiv.textContent = '';
+    if (searchResult == '') {
+        const mainError = document.getElementById('error')
+        const errosMessage = document.createElement('p');
+        errosMessage.innerHTML = `<p class="w-50 text-center mx-auto text-white bg-danger rounded">please type correct</p>`;
 
-    searchResult.forEach(showResult => {
-        // console.log(showResult);
 
-        const newDiv = document.createElement('div');
-        newDiv.classList.add('col');
-        newDiv.innerHTML = `
-       
-            <div class="card w-75 mx-auto p-3 rounded">
-            <img src="${showResult.image}" class="card-img-top w-50 mx-auto" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-center text-info">${showResult.phone_name}</h5>
-                <h6  class="card-title text-center text-danger">${showResult.brand}</h6>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                <button onclick="displayDetails('${showResult.slug}')" class="btn btn-primary" type="button">Details</button>
-              </div>
-             </div>
-           
-        `
 
-        parrentDiv.appendChild(newDiv)
-    });
+        mainError.replaceChildren(errosMessage)
+
+
+        // document.getElementById('error').style.display = 'block'
+    }
+
+    else {
+        const parrentDiv = document.getElementById('parent');
+
+
+        parrentDiv.textContent = '';
+
+
+
+        document.getElementById('error').style.display = 'none'
+
+        searchResult.forEach(showResult => {
+            console.log(showResult);
+
+            const newDiv = document.createElement('div');
+            newDiv.classList.add('col');
+            newDiv.innerHTML = `
+                   
+                        <div class="card w-75 mx-auto p-3 rounded">
+                        <img src="${showResult.image}" class="card-img-top w-50 mx-auto" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-info">${showResult.phone_name}</h5>
+                            <h6  class="card-title text-center text-danger">${showResult.brand}</h6>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                            <button onclick="displayDetails('${showResult.slug}')" class="btn btn-primary" type="button">Details</button>
+                          </div>
+                         </div>
+                       
+                    `
+
+            parrentDiv.appendChild(newDiv)
+        });
+    }
+
 }
 
 const displayDetails = details => {
