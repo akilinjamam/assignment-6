@@ -29,8 +29,10 @@ const displaySearch = searchResult => {
             <img src="${showResult.image}" class="card-img-top w-50 mx-auto" alt="...">
             <div class="card-body">
                 <h5 class="card-title text-center text-info">${showResult.phone_name}</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.</p>
+                <h6  class="card-title text-center text-danger">${showResult.brand}</h6>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                <button onclick="displayDetails('${showResult.slug}')" class="btn btn-primary" type="button">Details</button>
+              </div>
              </div>
            
         `
@@ -38,6 +40,16 @@ const displaySearch = searchResult => {
         parrentDiv.appendChild(newDiv)
     });
 }
+
+const displayDetails = details => {
+    // console.log(details)
+
+    const detailUrl = `https://openapi.programming-hero.com/api/phone/${details}`
+    fetch(detailUrl)
+        .then(res => res.json())
+        .then(data => console.log(data))
+}
+
 
 
 
