@@ -6,14 +6,38 @@ const searchText = () => {
     const url = ` https://openapi.programming-hero.com/api/phones?search=${inputValue}`
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => displaySearch(data.data))
 
 }
 
 
 searchText()
 
+const displaySearch = searchResult => {
+    console.log(searchResult);
 
+    const parrentDiv = document.getElementById('parent');
+    parrentDiv.textContent = ''
+    searchResult.forEach(showResult => {
+        console.log(showResult);
+
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('col');
+        newDiv.innerHTML = `
+       
+            <div class="card w-75 mx-auto p-3 rounded">
+            <img src="${showResult.image}" class="card-img-top w-50 mx-auto" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center text-info">${showResult.phone_name}</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.</p>
+             </div>
+           
+        `
+
+        parrentDiv.appendChild(newDiv)
+    });
+}
 
 
 
