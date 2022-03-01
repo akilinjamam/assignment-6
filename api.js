@@ -19,7 +19,7 @@ const displaySearch = searchResult => {
     const parrentDiv = document.getElementById('parent');
     parrentDiv.textContent = ''
     searchResult.forEach(showResult => {
-        console.log(showResult);
+        // console.log(showResult);
 
         const newDiv = document.createElement('div');
         newDiv.classList.add('col');
@@ -47,10 +47,35 @@ const displayDetails = details => {
     const detailUrl = `https://openapi.programming-hero.com/api/phone/${details}`
     fetch(detailUrl)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => showDetailInfo(data))
 }
 
+const showDetailInfo = detailInfo => {
 
+    console.log(detailInfo.data);
+
+    const parentTwo = document.getElementById('parent-two');
+
+    const newSingleDiv = document.createElement('div');
+    parentTwo.textContent = ''
+    newSingleDiv.classList.add('card');
+    newSingleDiv.innerHTML = `
+    
+    <img src="${detailInfo.data.image}" class="card-img-top p-3" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-info">${detailInfo.data.name}</h5>
+            <p class="card-text text-danger">${detailInfo.data.brand}</p>
+            <p class="card-text text-danger">Release Date : ${detailInfo.data.releaseDate}</p>
+            <p class="card-text text-dark bold">Main Features :</p>
+          
+            <p class="card-text text-secondary"> chip set : ${detailInfo.data.mainFeatures.chipSet}</p>
+            <p class="card-text text-secondary"> display Size : ${detailInfo.data.mainFeatures.displaySize}</p>
+            <p class="card-text text-secondary"> Memory : ${detailInfo.data.mainFeatures.memory}</p>
+        </div>
+    
+    `
+    parentTwo.appendChild(newSingleDiv)
+}
 
 
 
