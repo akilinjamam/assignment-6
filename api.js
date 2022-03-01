@@ -3,11 +3,13 @@ const searchText = () => {
     const inputText = document.getElementById('input-field');
     const inputValue = inputText.value
     inputText.value = '';
+    document.getElementById('parent-two').textContent = ''
+    document.getElementById('parent-two').style.display = 'none'
 
     const url = ` https://openapi.programming-hero.com/api/phones?search=${inputValue}`
     fetch(url)
         .then(res => res.json())
-        .then(data => displaySearch(data.data))
+        .then(data => displaySearch(data.data.slice(0, 20)))
 
 }
 
@@ -67,13 +69,16 @@ const showDetailInfo = detailInfo => {
         <div class="card-body">
             <h5 class="card-title text-info">${detailInfo.data.name}</h5>
             <p class="card-text text-danger">${detailInfo.data.brand}</p>
-            <p class="card-text text-danger">Release Date : ${detailInfo.data.releaseDate}</p>
+            <p class="card-text text-danger">Release Date : ${detailInfo.data.releaseDate ? detailInfo.data.releaseDate : 'not found'}</p>
             <p class="card-text text-dark bold">Main Features :</p>
           
             <p class="card-text text-secondary"> chip set : ${detailInfo.data.mainFeatures.chipSet}</p>
             <p class="card-text text-secondary"> display Size : ${detailInfo.data.mainFeatures.displaySize}</p>
             <p class="card-text text-secondary"> Memory : ${detailInfo.data.mainFeatures.memory}</p>
             <p class="card-text text-secondary"> Sensor : ${detailInfo.data.mainFeatures.sensors[0]}, ${detailInfo.data.mainFeatures.sensors[1]}, ${detailInfo.data.mainFeatures.sensors[2]}, ${detailInfo.data.mainFeatures.sensors[3]}, ${detailInfo.data.mainFeatures.sensors[4]}</p>
+
+            
+
         </div>
     
     `
