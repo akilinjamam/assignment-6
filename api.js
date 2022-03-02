@@ -6,8 +6,9 @@ const searchText = () => {
     inputText.value = '';
 
 
+    document.getElementById('error').style.display = 'block'
+    document.getElementById('parent').textContent = '';
 
-    document.getElementById('parent').textContent = ''
     document.getElementById('parent-two').textContent = ''
     document.getElementById('parent-two').style.display = 'none'
 
@@ -17,9 +18,6 @@ const searchText = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displaySearch(data.data.slice(0, 20)))
-
-
-
 
 }
 
