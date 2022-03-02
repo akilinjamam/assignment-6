@@ -101,7 +101,15 @@ const showDetailInfo = detailInfo => {
             <p class="card-text text-secondary"> display Size : ${detailInfo.data.mainFeatures.displaySize}</p>
             <p class="card-text text-secondary"> Memory : ${detailInfo.data.mainFeatures.memory}</p>
             <p class="card-text text-secondary"> Sensor : ${detailInfo.data.mainFeatures.sensors[0]}, ${detailInfo.data.mainFeatures.sensors[1]}, ${detailInfo.data.mainFeatures.sensors[2]}, ${detailInfo.data.mainFeatures.sensors[3]}, ${detailInfo.data.mainFeatures.sensors[4]}</p>
-           
+            <div>
+            <p class="card-text text-secondary"> Others :</p>
+            <p class="card-text text-secondary"> WLAN : ${detailInfo?.data?.others?.WLAN ? detailInfo.data.others.WLAN : 'n/a'}</p>
+            <p class="card-text text-secondary">Bluetooth : ${detailInfo?.data?.others?.Bluetooth ? detailInfo.data.others.Bluetooth : 'n/a'}</p>
+            <p class="card-text text-secondary">GPS : ${detailInfo?.data?.others?.GPS ? detailInfo.data.others.GPS : 'n/a'}</p>
+            <p class="card-text text-secondary">NFC : ${detailInfo?.data?.others?.NFC ? detailInfo.data.others.NFC : 'n/a'}</p>
+            <p class="card-text text-secondary">Radio : ${detailInfo?.data?.others?.Radio ? detailInfo.data.others.Radio : 'n/a'}</p>
+            <p class="card-text text-secondary">USB : ${detailInfo?.data?.others?.USB ? detailInfo.data.others.USB : 'n/a'}</p>
+            </div>
         </div>
     
     `
