@@ -1,4 +1,4 @@
-
+// search button and input part
 const searchText = () => {
     const inputText = document.getElementById('input-field');
 
@@ -12,6 +12,7 @@ const searchText = () => {
     document.getElementById('parent-two').textContent = ''
     document.getElementById('parent-two').style.display = 'none'
 
+    // data connecting from api link
     const url = ` https://openapi.programming-hero.com/api/phones?search=${inputValue}`
 
 
@@ -23,9 +24,9 @@ const searchText = () => {
 
 
 
-
+// api data display part through looping 
 const displaySearch = searchResult => {
-    console.log(searchResult);
+    // console.log(searchResult);
     // debugger;
 
     if (searchResult == '') {
@@ -41,17 +42,11 @@ const displaySearch = searchResult => {
 
     else if (searchResult == searchResult) {
         const parrentDiv = document.getElementById('parent');
-
-
         parrentDiv.textContent = '';
-
-
-
         document.getElementById('error').style.display = 'none'
 
         searchResult.forEach(showResult => {
             console.log(showResult);
-
             const newDiv = document.createElement('div');
             newDiv.classList.add('col');
             newDiv.innerHTML = `
@@ -67,13 +62,14 @@ const displaySearch = searchResult => {
                          </div>
                        
                     `
-
             parrentDiv.appendChild(newDiv)
         });
     }
 
 }
 
+
+// display single part when clicked in the button of any card
 const displayDetails = details => {
     // console.log(details)
 
@@ -97,7 +93,7 @@ const showDetailInfo = detailInfo => {
     <img src="${detailInfo.data.image}" class="card-img-top p-3" alt="...">
         <div class="card-body">
             <h5 class="card-title text-info">${detailInfo.data.name}</h5>
-            <p class="card-text text-danger">${detailInfo.data.brand}</p>
+            <p class="card-text text-success">${detailInfo.data.brand}</p>
             <p class="card-text text-danger">Release Date : ${detailInfo.data.releaseDate ? detailInfo.data.releaseDate : 'not found'}</p>
             <p class="card-text text-dark bold">Main Features :</p>
           
@@ -105,9 +101,7 @@ const showDetailInfo = detailInfo => {
             <p class="card-text text-secondary"> display Size : ${detailInfo.data.mainFeatures.displaySize}</p>
             <p class="card-text text-secondary"> Memory : ${detailInfo.data.mainFeatures.memory}</p>
             <p class="card-text text-secondary"> Sensor : ${detailInfo.data.mainFeatures.sensors[0]}, ${detailInfo.data.mainFeatures.sensors[1]}, ${detailInfo.data.mainFeatures.sensors[2]}, ${detailInfo.data.mainFeatures.sensors[3]}, ${detailInfo.data.mainFeatures.sensors[4]}</p>
-
-            
-
+           
         </div>
     
     `
